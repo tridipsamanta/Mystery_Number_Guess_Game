@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 230 25% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 230 25% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 230 25% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 180 100% 50%;
+    --primary-foreground: 230 25% 8%;
+
+    --secondary: 320 100% 60%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 230 20% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 45 100% 50%;
+    --accent-foreground: 230 25% 8%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 145 80% 45%;
+    --success-foreground: 210 40% 98%;
+
+    --ice: 200 100% 60%;
+    --ice-foreground: 230 25% 8%;
+
+    --border: 230 20% 20%;
+    --input: 230 20% 20%;
+    --ring: 180 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Gaming gradients */
+    --gradient-gaming: linear-gradient(135deg, hsl(230 25% 12%) 0%, hsl(260 30% 15%) 100%);
+    --gradient-neon: linear-gradient(90deg, hsl(180 100% 50%) 0%, hsl(320 100% 60%) 100%);
+    --gradient-victory: linear-gradient(135deg, hsl(45 100% 50%) 0%, hsl(30 100% 55%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsla(230 25% 20% / 0.6) 0%, hsla(230 25% 15% / 0.4) 100%);
+
+    /* Glow effects */
+    --glow-primary: 0 0 20px hsl(180 100% 50% / 0.5), 0 0 40px hsl(180 100% 50% / 0.3);
+    --glow-secondary: 0 0 20px hsl(320 100% 60% / 0.5), 0 0 40px hsl(320 100% 60% / 0.3);
+    --glow-victory: 0 0 30px hsl(45 100% 50% / 0.6), 0 0 60px hsl(45 100% 50% / 0.4);
+    --glow-destructive: 0 0 20px hsl(0 85% 60% / 0.5);
+    --glow-ice: 0 0 20px hsl(200 100% 60% / 0.5);
+
+    --sidebar-background: 230 25% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 230 25% 8%;
+    --sidebar-accent: 230 20% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 230 20% 20%;
+    --sidebar-ring: 180 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background: var(--gradient-gaming);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply rounded-2xl border border-border/50;
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+  }
+
+  .neon-text {
+    text-shadow: var(--glow-primary);
+  }
+
+  .neon-text-secondary {
+    text-shadow: var(--glow-secondary);
+  }
+
+  .neon-border {
+    box-shadow: var(--glow-primary), inset 0 0 20px hsl(180 100% 50% / 0.1);
+  }
+
+  .victory-glow {
+    box-shadow: var(--glow-victory);
+    animation: victory-pulse 1.5s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; filter: brightness(1); }
+    50% { opacity: 0.8; filter: brightness(1.3); }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+  }
+
+  @keyframes heavy-shake {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    10% { transform: translate(-8px, -2px) rotate(-1deg); }
+    20% { transform: translate(8px, 2px) rotate(1deg); }
+    30% { transform: translate(-8px, 2px) rotate(0deg); }
+    40% { transform: translate(8px, -2px) rotate(1deg); }
+    50% { transform: translate(-8px, 0) rotate(-1deg); }
+    60% { transform: translate(8px, 2px) rotate(0deg); }
+    70% { transform: translate(-8px, -2px) rotate(1deg); }
+    80% { transform: translate(8px, 0) rotate(-1deg); }
+    90% { transform: translate(-8px, 2px) rotate(0deg); }
+  }
+
+  @keyframes pulse-danger {
+    0%, 100% { box-shadow: 0 0 20px hsl(0 85% 60% / 0.3); }
+    50% { box-shadow: 0 0 50px hsl(0 85% 60% / 0.7), 0 0 80px hsl(0 85% 60% / 0.4); }
+  }
+
+  @keyframes glitch {
+    0%, 100% { transform: translate(0); filter: hue-rotate(0deg); }
+    10% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+    20% { transform: translate(2px, -2px); filter: hue-rotate(180deg); }
+    30% { transform: translate(-2px, 0); filter: hue-rotate(270deg); }
+    40% { transform: translate(2px, 2px); filter: hue-rotate(0deg); }
+    50% { transform: translate(-2px, -2px); filter: hue-rotate(90deg); }
+    60% { transform: translate(2px, 0); filter: hue-rotate(180deg); }
+    70% { transform: translate(0, 2px); filter: hue-rotate(270deg); }
+    80% { transform: translate(-2px, 2px); filter: hue-rotate(0deg); }
+    90% { transform: translate(2px, -2px); filter: hue-rotate(90deg); }
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.15); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+    60% { transform: scale(1); }
+  }
+
+  @keyframes flash-red {
+    0%, 100% { background-color: transparent; }
+    50% { background-color: hsl(0 85% 60% / 0.15); }
+  }
+
+  @keyframes victory-pulse {
+    0%, 100% { box-shadow: var(--glow-victory); }
+    50% { box-shadow: 0 0 50px hsl(45 100% 50% / 0.8), 0 0 100px hsl(45 100% 50% / 0.5); }
+  }
+
+  @keyframes bounce-in {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes number-spin {
+    0% { transform: rotateX(0deg); }
+    100% { transform: rotateX(360deg); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .animate-heavy-shake {
+    animation: heavy-shake 0.6s ease-in-out;
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+
+  .animate-glitch {
+    animation: glitch 0.3s ease-in-out infinite;
+  }
+
+  .animate-heartbeat {
+    animation: heartbeat 1s ease-in-out infinite;
+  }
+
+  .animate-pulse-danger {
+    animation: pulse-danger 1s ease-in-out infinite;
+  }
+
+  .animate-flash-red {
+    animation: flash-red 0.5s ease-in-out infinite;
+  }
+
+  .danger-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 40;
+    background: radial-gradient(circle at center, transparent 0%, hsl(0 85% 60% / 0.1) 100%);
+  }
+
+  .critical-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 40;
+    background: radial-gradient(circle at center, transparent 0%, hsl(0 85% 60% / 0.25) 100%);
+    animation: flash-red 1s ease-in-out infinite;
+  }
+}
